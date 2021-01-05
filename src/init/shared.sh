@@ -13,6 +13,7 @@ LOCATION="./src/LOCATION"
 UNAME=`uname -snr`
 NUNAME=`uname`
 ENVFILE="/etc/environment"
+ENVFILE_SUNOS="/root/.bashrc"
 
 # If whoami does not exist, try id
 if command -v whoami > /dev/null 2>&1 ; then

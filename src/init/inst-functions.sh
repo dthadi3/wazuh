@@ -314,6 +314,12 @@ WriteEnvVar()
 {
   # Setting the installation path only for the script
   WAZUH_HOME=${INSTALLDIR}
+
+  # Setting the environment file for Solaris
+  if [ ${DIST_NAME} = "sunos" ]; then
+    ENVFILE=ENVFILE_SUNOS
+  fi
+
   # Saving the system wide environment variable
   echo "WAZUH_HOME=\"${INSTALLDIR}\"" >> ${ENVFILE} || echo "Error: Unable to write the environment variable, please create it manually"
 }
