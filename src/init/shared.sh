@@ -12,6 +12,7 @@ REVISION=`cat ${REVISION_FILE}`
 LOCATION="./src/LOCATION"
 UNAME=`uname -snr`
 NUNAME=`uname`
+ENVFILE="/etc/environment"
 
 # If whoami does not exist, try id
 if command -v whoami > /dev/null 2>&1 ; then

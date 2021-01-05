@@ -308,6 +308,17 @@ SetHeaders()
 }
 
 ##########
+# Write the environment variable
+##########
+WriteEnvVar()
+{
+  # Setting the installation path only for the script
+  WAZUH_HOME=${INSTALLDIR}
+  # Saving the system wide environment variable
+  echo "WAZUH_HOME=\"${INSTALLDIR}\"" >> ${ENVFILE} || echo "Error: Unable to write the environment variable, please create it manually"
+}
+
+##########
 # Generate the ossec-init.conf
 ##########
 GenerateInitConf()

@@ -138,6 +138,9 @@ Install()
 
     cd ../
 
+    # Writing the environment variable
+    WriteEnvVar
+
     # Generate the /etc/ossec-init.conf
     VERSION=`cat ${VERSION_FILE}`
     REVISION=`cat ${REVISION_FILE}`
@@ -1066,8 +1069,8 @@ main()
         echo "   https://documentation.wazuh.com/"
         echo ""
 
-    elif [ "X$INSTYPE" = "Xagent" ]; then  
-        echo ""      
+    elif [ "X$INSTYPE" = "Xagent" ]; then
+        echo ""
         echo " - ${moreinfo}"
         echo "   https://documentation.wazuh.com/"
         echo ""
