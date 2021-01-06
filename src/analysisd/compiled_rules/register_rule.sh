@@ -22,8 +22,8 @@ if [ "x$1" = "x" -o "x$1" = "xhelp" -o "x$1" = "x-h" ]; then
     echo "$0 add <function_name>"
     echo "$0 list"
     echo "$0 build"
-    echo "$0 save"
-    echo "$0 restore"
+    echo "$0 save WAZUH_INSTALLATION_DIRECTORY"
+    echo "$0 restore WAZUH_INSTALLATION_DIRECTORY"
     exit 0;
 fi
 
@@ -33,19 +33,23 @@ if [ "x$1" = "xlist" ]; then
     exit 0;
 
 elif [ "x$1" = "xsave" ]; then
-    ls -la /etc/ossec-init.conf > /dev/null 2>&1
+    DIRECTORY=$2
+    if [ "X${DIRECTORY}" = "X" ]; then
+        echo "ERROR: Wazuh installation path was not specified."
+        exit 1;
+    fi
+
+    ls -la ${DIRECTORY}/etc/ossec-init.conf > /dev/null 2>&1
     if [ ! $? = 0 ]; then
         echo "ERROR: Unable to save rules. You must have OSSEC installed to do so."
         exit 1;
     fi
 
-    cat /etc/ossec-init.conf > /dev/null 2>&1
+    cat ${DIRECTORY}/etc/ossec-init.conf > /dev/null 2>&1
     if [ ! $? = 0 ]; then
         echo "ERROR: Unable to save rules. You must be root to do so."
         exit 1;
     fi
-
-    . /etc/ossec-init.conf
 
     ls ${DIRECTORY}/compiled_rules > /dev/null 2>&1
     if [ ! $? = 0 ]; then
@@ -71,20 +75,24 @@ elif [ "x$1" = "xsave" ]; then
     exit 0;
 
 elif [ "x$1" = "xrestore" ]; then
+    DIRECTORY=$2
 
-    ls -la /etc/ossec-init.conf > /dev/null 2>&1
+    if [ "X${DIRECTORY}" = "X" ]; then
+        echo "ERROR: Wazuh installation path was not specified."
+        exit 1;
+    fi
+
+    ls -la ${DIRECTORY}/etc/ossec-init.conf > /dev/null 2>&1
     if [ ! $? = 0 ]; then
         echo "ERROR: Unable to restore rules. You must have OSSEC installed to do so."
         exit 1;
     fi
 
-    cat /etc/ossec-init.conf > /dev/null 2>&1
+    cat ${DIRECTORY}/etc/ossec-init.conf > /dev/null 2>&1
     if [ ! $? = 0 ]; then
         echo "ERROR: Unable to restore rules. You must be root to do so."
         exit 1;
     fi
-
-    . /etc/ossec-init.conf
 
     ls ${DIRECTORY}/compiled_rules/function_list > /dev/null 2>&1
     if [ ! $? = 0 ]; then
@@ -173,4 +181,3 @@ else
     exit 1;
 
 fi
-
