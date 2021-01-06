@@ -5,7 +5,7 @@ After=network.target network-online.target
 
 [Service]
 Type=forking
-EnvironmentFile=/etc/ossec-init.conf
+EnvironmentFile=INSTALLDIR/etc/ossec-init.conf
 
 ExecStart=/usr/bin/env ${DIRECTORY}/bin/wazuh-control start
 ExecStop=/usr/bin/env ${DIRECTORY}/bin/wazuh-control stop
