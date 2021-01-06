@@ -37,7 +37,7 @@ runInit()
             systemctl daemon-reload
         else
             cp -p ./src/systemd/wazuh-$type.service /etc/systemd/system/
-            sed 's;INSTALLDIR;/${INSTALLDIR};' /etc/systemd/system/system/"wazuh-"$type.service
+            sed 's;INSTALLDIR;/${INSTALLDIR};' /etc/systemd/system/"wazuh-"$type.service
             chown root:ossec /etc/systemd/system/"wazuh-"$type.service
             systemctl daemon-reload
         fi
