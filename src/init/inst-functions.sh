@@ -313,7 +313,7 @@ SetHeaders()
 GenerateInitConf()
 {
     NEWINIT="./ossec-init.conf.temp"
-    echo "DIRECTORY=\"${INSTALLDIR}\"" > ${NEWINIT}
+    #echo "DIRECTORY=\"${INSTALLDIR}\"" > ${NEWINIT}
     echo "NAME=\"${NAME}\"" >> ${NEWINIT}
     echo "VERSION=\"${VERSION}\"" >> ${NEWINIT}
     echo "REVISION=\"${REVISION}\"" >> ${NEWINIT}

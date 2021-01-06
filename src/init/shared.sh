@@ -34,6 +34,7 @@ INSTALLDIR="$DEFAULT_DIR";
 WORKDIR="$INSTALLDIR"
 CEXTRA=""
 OSSEC_INIT=${INSTALLDIR}"/etc/ossec-init.conf"
+DIRECTORY=${INSTALLDIR}
 
 # Internal definitions
 NEWCONFIG="./etc/ossec.mc"
