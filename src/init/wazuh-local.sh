@@ -22,7 +22,7 @@ fi
 
 AUTHOR="Wazuh Inc."
 DAEMONS="wazuh-modulesd wazuh-monitord wazuh-logcollector wazuh-syscheckd wazuh-analysisd wazuh-maild wazuh-execd wazuh-db wazuh-agentlessd wazuh-integratord wazuh-dbd wazuh-csyslogd"
-INITCONF="/etc/ossec-init.conf"
+INITCONF=$DIR"/etc/ossec-init.conf"
 
 # Reverse order of daemons
 SDAEMONS=$(echo $DAEMONS | awk '{ for (i=NF; i>1; i--) printf("%s ",$i); print $1; }')
