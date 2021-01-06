@@ -145,7 +145,7 @@ Install()
     GenerateInitConf > ${OSSEC_INIT}
     chmod 640 ${OSSEC_INIT}
     chown root:ossec ${OSSEC_INIT}
-    ln -sf ${OSSEC_INIT} ${INSTALLDIR}${OSSEC_INIT}
+    #ln -sf ${OSSEC_INIT} ${INSTALLDIR}${OSSEC_INIT}
 
     # Install Wazuh ruleset updater
     if [ "X$INSTYPE" = "Xserver" ]; then
@@ -1066,8 +1066,8 @@ main()
         echo "   https://documentation.wazuh.com/"
         echo ""
 
-    elif [ "X$INSTYPE" = "Xagent" ]; then  
-        echo ""      
+    elif [ "X$INSTYPE" = "Xagent" ]; then
+        echo ""
         echo " - ${moreinfo}"
         echo "   https://documentation.wazuh.com/"
         echo ""
