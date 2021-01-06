@@ -23,7 +23,6 @@ else
     fi
 fi
 
-OSSEC_INIT="${INSTALLDIR}/etc/ossec-init.conf"
 HOST=`hostname`
 NAMESERVERS=`cat /etc/resolv.conf | grep "^nameserver" | cut -d " " -sf 2`
 NAMESERVERS2=`cat /etc/resolv.conf | grep "^nameserver" | cut -sf 2`
@@ -34,6 +33,7 @@ DEFAULT_DIR=`grep DIR ${LOCATION} | cut -f2 -d\"`
 INSTALLDIR="$DEFAULT_DIR";
 WORKDIR="$INSTALLDIR"
 CEXTRA=""
+OSSEC_INIT=${INSTALLDIR}"/etc/ossec-init.conf"
 
 # Internal definitions
 NEWCONFIG="./etc/ossec.mc"
