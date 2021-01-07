@@ -844,6 +844,8 @@ main()
         read ANY
     fi
 
+    . ./src/init/update.sh
+    # Checking if there is already an installation in the default dir
     if [ "`isDefaultUpdate`" = "${FALSE}" ]; then
         if [ "X${USER_DIR}" = "X" ]; then
             echo ""
@@ -868,7 +870,6 @@ main()
         fi
     fi
 
-    . ./src/init/update.sh
     # Is this an update?
     if [ "`isUpdate`" = "${TRUE}" -a "x${USER_CLEANINSTALL}" = "x" ]; then
         echo ""
