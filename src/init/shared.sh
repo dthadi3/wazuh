@@ -33,7 +33,7 @@ DEFAULT_DIR=`grep DIR ${LOCATION} | cut -f2 -d\"`
 INSTALLDIR="$DEFAULT_DIR";
 WORKDIR="$INSTALLDIR"
 CEXTRA=""
-OSSEC_INIT=${INSTALLDIR}"/etc/ossec-init.conf"
+OSSEC_INIT=${DEFAULT_DIR}"/etc/ossec-init.conf"
 DIRECTORY=${INSTALLDIR}
 
 # Internal definitions

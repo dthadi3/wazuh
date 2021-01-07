@@ -844,6 +844,30 @@ main()
         read ANY
     fi
 
+    if [ "`isDefaultUpdate`" = "${FALSE}" ]; then
+        if [ "X${USER_DIR}" = "X" ]; then
+            echo ""
+            echo "2- ${settingupenv}."
+            echo ""
+
+            while [ 1 ]; do
+                $ECHO " - ${wheretoinstall} [$INSTALLDIR]: "
+                read ANSWER
+                if [ ! "X$ANSWER" = "X" ]; then
+                    echo $ANSWER |grep -E "^/[a-zA-Z0-9./_-]{3,128}$">/dev/null 2>&1
+                    if [ $? = 0 ]; then
+                        INSTALLDIR=$ANSWER;
+                        break;
+                    fi
+                else
+                    break;
+                fi
+            done
+        else
+            INSTALLDIR=${USER_DIR}
+        fi
+    fi
+
     . ./src/init/update.sh
     # Is this an update?
     if [ "`isUpdate`" = "${TRUE}" -a "x${USER_CLEANINSTALL}" = "x" ]; then

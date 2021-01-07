@@ -9,43 +9,27 @@ TRUE="true"
 
 isUpdate()
 {
+    ls -la ${INSTALLDIR}"/etc/ossec-init.conf" > /dev/null 2>&1
+    if [ $? = 0 ]; then
+        # An installation was found in a custom path
+        echo "${TRUE}"
+        return 0;
+    else
+        echo "${FALSE}"
+        return 1;
+    fi
+}
+
+isDefaultUpdate()
+{
     ls -la ${OSSEC_INIT} > /dev/null 2>&1
     if [ $? = 0 ]; then
         # An installation was found in the default path
         echo "${TRUE}"
         return 0;
     else
-        if [ "X${USER_DIR}" = "X" ]; then
-            echo ""
-            echo "2- ${settingupenv}."
-            echo ""
-
-            while [ 1 ]; do
-                $ECHO " - ${wheretoinstall} [$INSTALLDIR]: "
-                read ANSWER
-                if [ ! "X$ANSWER" = "X" ]; then
-                    echo $ANSWER |grep -E "^/[a-zA-Z0-9./_-]{3,128}$">/dev/null 2>&1
-                    if [ $? = 0 ]; then
-                        INSTALLDIR=$ANSWER;
-                        break;
-                    fi
-                else
-                    break;
-                fi
-            done
-        else
-            INSTALLDIR=${USER_DIR}
-        fi
-
-        ls -la ${INSTALLDIR}"/etc/ossec-init.conf" > /dev/null 2>&1
-        if [ $? = 0 ]; then
-            # An installation was found in a custom path
-            echo "${TRUE}"
-            return 0;
-        else
-            echo "${FALSE}"
-            return 1;
-        fi
+        echo "${FALSE}"
+        return 1;
     fi
 }
 
