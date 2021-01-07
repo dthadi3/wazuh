@@ -573,10 +573,6 @@ setEnv()
 {
     CEXTRA="$CEXTRA -DDEFAULTDIR=\\\"${INSTALLDIR}\\\""
 
-    echo ""
-    echo "    - ${installat} ${INSTALLDIR} ."
-
-
     if [ "X$INSTYPE" = "Xagent" ]; then
         CEXTRA="$CEXTRA -DCLIENT"
     elif [ "X$INSTYPE" = "Xlocal" ]; then
@@ -849,7 +845,7 @@ main()
     if [ "`isDefaultUpdate`" = "${FALSE}" ]; then
         if [ "X${USER_DIR}" = "X" ]; then
             echo ""
-            echo "2- ${settingupenv}."
+            echo "1- ${settingupenv}."
             echo ""
 
             while [ 1 ]; do
@@ -859,6 +855,7 @@ main()
                     echo $ANSWER |grep -E "^/[a-zA-Z0-9./_-]{3,128}$">/dev/null 2>&1
                     if [ $? = 0 ]; then
                         INSTALLDIR=$ANSWER;
+                        OSSEC_INIT=${INSTALLDIR}"/etc/ossec-init.conf"
                         break;
                     fi
                 else
@@ -867,10 +864,14 @@ main()
             done
         else
             INSTALLDIR=${USER_DIR}
+            OSSEC_INIT=${INSTALLDIR}"/etc/ossec-init.conf"
         fi
+
+        echo ""
+        echo "    - ${installat} ${INSTALLDIR} ."
     fi
 
-    # Is this an update?
+    # Is this an update in the selected dir?
     if [ "`isUpdate`" = "${TRUE}" -a "x${USER_CLEANINSTALL}" = "x" ]; then
         echo ""
         ct="1"
@@ -943,7 +944,7 @@ main()
         while [ 1 ]
         do
             echo ""
-            $ECHO "1- ${whattoinstall} "
+            $ECHO "2- ${whattoinstall} "
 
             read ANSWER
             case $ANSWER in
