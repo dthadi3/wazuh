@@ -571,29 +571,6 @@ ConfigureServer()
 ##########
 setEnv()
 {
-    echo ""
-    echo "2- ${settingupenv}."
-
-    echo ""
-    if [ "X${USER_DIR}" = "X" ]; then
-        while [ 1 ]; do
-            $ECHO " - ${wheretoinstall} [$INSTALLDIR]: "
-            read ANSWER
-            if [ ! "X$ANSWER" = "X" ]; then
-                echo $ANSWER |grep -E "^/[a-zA-Z0-9./_-]{3,128}$">/dev/null 2>&1
-                if [ $? = 0 ]; then
-                    INSTALLDIR=$ANSWER;
-                    break;
-                fi
-            else
-                break;
-            fi
-        done
-    else
-        INSTALLDIR=${USER_DIR}
-    fi
-
-
     CEXTRA="$CEXTRA -DDEFAULTDIR=\\\"${INSTALLDIR}\\\""
 
     echo ""
